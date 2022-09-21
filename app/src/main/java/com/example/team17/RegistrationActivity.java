@@ -1,6 +1,7 @@
 package com.example.team17;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -13,6 +14,12 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.google.android.gms.auth.api.signin.GoogleSignIn;
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
+import com.google.android.gms.auth.api.signin.GoogleSignInClient;
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
+import com.google.android.gms.common.SignInButton;
+import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputEditText;
@@ -27,10 +34,13 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class RegistrationActivity extends AppCompatActivity {
+
     Button reg_signUp_btn;
     TextInputEditText reg_temail, reg_tpass, reg_tname, reg_tphone, reg_tconpass;
     TextInputLayout reg_em_label, reg_pas_label, reg_tname_label, reg_tphone_label, reg_tconpass_label;
     FirebaseAuth mAuth;
+    FirebaseDatabase database;
+    DatabaseReference reference;
 
     @SuppressLint("ResourceAsColor")
     @Override
@@ -71,7 +81,9 @@ public class RegistrationActivity extends AppCompatActivity {
                 }
             }
         });
+
     }
+
 
     @Override
     public void onStart() {
@@ -89,23 +101,23 @@ public class RegistrationActivity extends AppCompatActivity {
         String uname = reg_tname.getText().toString();
         String phone = reg_tphone.getText().toString();
 
-        mAuth.createUserWithEmailAndPassword(em1, pass1).addOnCompleteListener(this, task -> {
-            if (task.isSuccessful()) {
-                //realtimedatabase
-                String email = em1;
-                /*FirebaseDatabase database = FirebaseDatabase.getInstance();
-                DatabaseReference myRef = database.getReference("Users");
-                UserHelperClass userHelperClass = new UserHelperClass(uname, em1, phone, pass1);
-                myRef.child(email).setValue(userHelperClass);*/
-
-                startActivity(new Intent(RegistrationActivity.this, LoginActivity.class));
-                finish();
-            } else {
-                Toast.makeText(RegistrationActivity.this, "Try after some time.", Toast.LENGTH_SHORT).show();
+        mAuth.createUserWithEmailAndPassword(em1, pass1).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+            @Override
+            public void onComplete(@NonNull Task<AuthResult> task) {
+                if (task.isSuccessful()) {
+                    database = FirebaseDatabase.getInstance();
+                    reference = database.getReference("Users");
+                    UserHelperClass userHelperClass = new UserHelperClass(uname, phone, em1, pass1);
+                    String userid=mAuth.getUid();
+                    reference.child(userid).setValue(userHelperClass);
+                    startActivity(new Intent(RegistrationActivity.this, LoginActivity.class));
+                    finish();
+                } else {
+                    Toast.makeText(RegistrationActivity.this, "Try after some time.", Toast.LENGTH_SHORT).show();
+                }
             }
         });
     }
-
     private boolean validateUserNameData() {
         String val = reg_temail.getText().toString().trim();
         String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";

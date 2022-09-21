@@ -4,7 +4,7 @@ package com.example.team17;
 public class UserHelperClass {
     String uname, email, phone, pass;
 
-    public UserHelperClass(String uname, String email, String phone, String pass) {
+    public UserHelperClass(String uname, String phone, String email, String pass) {
         this.uname = uname;
         this.email = email;
         this.phone = phone;

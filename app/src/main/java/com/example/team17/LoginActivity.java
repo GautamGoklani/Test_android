@@ -12,12 +12,15 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 
+import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 
+import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.common.SignInButton;
 import com.google.android.gms.common.api.ApiException;
@@ -43,6 +46,7 @@ public class LoginActivity extends AppCompatActivity {
         getSupportActionBar().hide();
 
         //hooks
+
         signIn_btn = findViewById(R.id.login_btn);
         temail = findViewById(R.id.username1);
         tpass = findViewById(R.id.password1);
@@ -56,14 +60,13 @@ public class LoginActivity extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
 
         signIn_btn.setOnClickListener(view -> {
-            if (!validateUserNameData()) {
-                return;
-            } else if (!validatePasswordData()) {
+            if (!validateUserNameData() | !validatePasswordData()) {
                 return;
             } else {
                 signIn();
             }
         });
+
     }
 
     @Override
@@ -121,7 +124,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     public void signup(View view) {
-        Intent i=new Intent(LoginActivity.this,RegistrationActivity.class);
+        Intent i = new Intent(LoginActivity.this, RegistrationActivity.class);
         startActivity(i);
     }
 }
