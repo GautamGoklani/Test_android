@@ -31,7 +31,7 @@
             tools:ignore="MissingConstraints" />
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/title"
+            android:id="@+id/pro_title"
             style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -61,7 +61,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/title"
+            app:layout_constraintTop_toBottomOf="@+id/pro_title"
             app:layout_constraintVertical_bias="0.034"
             tools:ignore="InvalidId">
 
@@ -128,7 +128,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/features"
             app:layout_constraintVertical_bias="0.238"
-            tools:ignore="MissingConstraints" />
+            tools:ignore="MissingConstraints,UsingOnClickInXml" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
