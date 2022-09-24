@@ -23,7 +23,6 @@ public class ProfileFragment extends Fragment {
     private static final String ARG_PARAM2 = "param2";
 
     Button logOut_btn;
-    GoogleSignInClient mGoogleSignInClient;
     FirebaseAuth mAuth;
     private String mParam1;
     private String mParam2;

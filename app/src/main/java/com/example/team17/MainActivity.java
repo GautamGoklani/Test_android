@@ -9,6 +9,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
@@ -32,7 +33,6 @@ public class MainActivity extends AppCompatActivity {
         Objects.requireNonNull(aBar).setBackgroundDrawable(cd);
 
         mAuth = FirebaseAuth.getInstance();
-
 
         FragmentManager ft = getSupportFragmentManager();
         ft.beginTransaction()
@@ -74,5 +74,10 @@ public class MainActivity extends AppCompatActivity {
             }
             return false;
         });
+    }
+
+    public void addreq(View view) {
+        Intent i=new Intent(MainActivity.this,Addrequest.class);
+        startActivity(i);
     }
 }
