@@ -112,23 +112,23 @@
 
 
         <com.google.android.material.button.MaterialButton
-            android:id="@+id/add_btn"
+            android:id="@+id/add"
             android:layout_width="156dp"
             android:layout_height="53dp"
             android:layout_marginTop="78dp"
             android:backgroundTint="@color/purple_500"
             android:gravity="center"
             android:text="ADD"
+            android:onClick="AddItem"
             android:textColor="@color/white"
             android:textSize="18sp"
-            android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.498"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/features"
             app:layout_constraintVertical_bias="0.238"
-            tools:ignore="MissingConstraints,UsingOnClickInXml" />
+            tools:ignore="HardcodedText,MissingConstraints,UsingOnClickInXml" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
