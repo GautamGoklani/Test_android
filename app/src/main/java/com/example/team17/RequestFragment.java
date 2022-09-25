@@ -1,15 +1,31 @@
 package com.example.team17;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
+import android.provider.ContactsContract;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
+
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import java.util.ArrayList;
 
 public class RequestFragment extends Fragment {
 
@@ -18,6 +34,11 @@ public class RequestFragment extends Fragment {
 
     private String mParam1;
     private String mParam2;
+    FirebaseAuth mAuth;
+    RecyclerView recyclerView;
+    DatabaseReference database;
+    RequestAdapter myAdapter;
+    ArrayList<RequestData> list;
 
     public RequestFragment() {
         // Required empty public constructor
@@ -45,8 +66,35 @@ public class RequestFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        ((MainActivity) getActivity()).setTitle("Request");
+        View view = inflater.inflate(R.layout.fragment_request, container, false);
+        ((MainActivity) getActivity()).setTitle("Requests");
 
-        return inflater.inflate(R.layout.fragment_request, container, false);
+        recyclerView = view.findViewById(R.id.requests_list);
+        database = FirebaseDatabase.getInstance().getReference("Requests");
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setLayoutManager(new LinearLayoutManager(RequestFragment.this.getActivity()));
+
+        list = new ArrayList<>();
+        myAdapter = new RequestAdapter(RequestFragment.this.getActivity(),list);
+        recyclerView.setAdapter(myAdapter);
+        database.addValueEventListener(new ValueEventListener() {
+            @SuppressLint("NotifyDataSetChanged")
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+                for(DataSnapshot dataSnapshot : snapshot.getChildren()){
+                    RequestData data=dataSnapshot.getValue(RequestData.class);
+                    list.add(data);
+
+                }
+                myAdapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+        return view;
     }
 }

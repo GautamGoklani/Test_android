@@ -17,8 +17,8 @@
             <androidx.cardview.widget.CardView
                 android:id="@+id/project_card1"
                 style="@style/ThemeOverlay.App.Card"
-                android:layout_width="350dp"
-                android:layout_height="120dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:clickable="true"
                 android:focusable="true"
                 app:cardCornerRadius="20dp"
@@ -35,6 +35,7 @@
                     android:layout_height="wrap_content"
                     android:text="Firebase_Demo"
                     android:textSize="20dp"
+                    android:layout_marginBottom="20dp"
                     android:textStyle="bold"
                     android:layout_marginTop="10dp"
                     android:layout_marginLeft="10dp"/>
@@ -42,7 +43,9 @@
                 <com.google.android.material.textview.MaterialTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="This Application was made for giving the demo of authentication in android app using firebase."
+                    android:paddingTop="5dp"
+                    android:paddingBottom="10dp"
+                    android:text="Demo of Firebase in Android Application."
                     android:textSize="17dp"
                     android:textColor="@color/black"
                     android:layout_marginTop="35dp"
@@ -52,8 +55,8 @@
             <androidx.cardview.widget.CardView
                 android:id="@+id/project_card2"
                 style="@style/ThemeOverlay.App.Card"
-                android:layout_width="350dp"
-                android:layout_height="120dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:clickable="true"
                 android:focusable="true"
@@ -78,7 +81,9 @@
                 <com.google.android.material.textview.MaterialTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="This application was made for digital agency named Team17 which will be used by clients of Team17 to send product development request."
+                    android:paddingTop="5dp"
+                    android:paddingBottom="10dp"
+                    android:text="This application was made for digital agency named Team17."
                     android:textSize="17dp"
                     android:textColor="@color/black"
                     android:layout_marginTop="35dp"
@@ -89,8 +94,8 @@
             <androidx.cardview.widget.CardView
                 android:id="@+id/project_card3"
                 style="@style/ThemeOverlay.App.Card"
-                android:layout_width="350dp"
-                android:layout_height="120dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:clickable="true"
                 android:focusable="true"
@@ -115,7 +120,9 @@
                 <com.google.android.material.textview.MaterialTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="This application was made for showing the implementation of basic functionality in Android."
+                    android:paddingTop="5dp"
+                    android:paddingBottom="10dp"
+                    android:text="Demo for implementation of basic functionality in Android."
                     android:textSize="17dp"
                     android:textColor="@color/black"
                     android:layout_marginTop="35dp"

@@ -11,6 +11,9 @@
         android:icon="@drawable/ic_baseline_folder_24"
         android:title="Project"/>
     <item
+        android:enabled="false"
+        tools:ignore="MenuTitle" />
+    <item
         android:id="@+id/requests"
         android:enabled="true"
         android:icon="@drawable/ic_baseline_article_24"
