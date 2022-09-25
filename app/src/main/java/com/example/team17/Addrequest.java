@@ -59,7 +59,6 @@ public class Addrequest extends AppCompatActivity {
         AddRequestClass addRequestClass = new AddRequestClass(title, description, category, features);
         String userid = mAuth.getUid();
         reference.child(userid).child(String.valueOf(req_count)).setValue(addRequestClass);
-//        reference.child(userid).child(String.valueOf(req_count)).setValue(addRequestClass);
         startActivity(new Intent(Addrequest.this, MainActivity.class));
         finish();
     }
