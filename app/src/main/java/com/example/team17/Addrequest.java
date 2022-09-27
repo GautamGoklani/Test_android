@@ -58,7 +58,9 @@ public class Addrequest extends AppCompatActivity {
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference reference = database.getReference("Requests");
         AddRequestClass addRequestClass = new AddRequestClass(title, description, category, features, status, source);
-        String userid = mAuth.getUid();
+        String email=mAuth.getCurrentUser().getEmail();
+        String userid=email.replace("@gmail.com"," ");
+
         reference.child(userid).child(title + "" + req_count).setValue(addRequestClass);
         startActivity(new Intent(Addrequest.this, MainActivity.class));
         finish();
