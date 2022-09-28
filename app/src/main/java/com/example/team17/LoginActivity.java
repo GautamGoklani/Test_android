@@ -15,6 +15,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.utils.widget.ImageFilterButton;
 
 
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
@@ -36,7 +37,8 @@ public class LoginActivity extends AppCompatActivity {
     Button signIn_btn;
     TextInputEditText temail, tpass;
     TextInputLayout em_label, pas_label;
-    private FirebaseAuth mAuth;
+    FirebaseAuth mAuth;
+
 
     @SuppressLint("ResourceAsColor")
     @Override
