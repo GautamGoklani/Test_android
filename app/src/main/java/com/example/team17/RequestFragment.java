@@ -71,6 +71,12 @@ public class RequestFragment extends Fragment {
 
         recyclerView = view.findViewById(R.id.requests_list);
         database = FirebaseDatabase.getInstance().getReference("Requests");
+
+
+//        String email=mAuth.getCurrentUser().getEmail();
+//        String userid=email.replaceAll("@gmail.com"," ").replaceAll("@yahoo.com"," ");
+//        database=FirebaseDatabase.getInstance().getReference("Requests").child(userid);
+
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(RequestFragment.this.getActivity()));
 
