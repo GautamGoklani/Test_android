@@ -11,4 +11,6 @@
     <color name="purple">#5A2EA4</color>
     <color name="darkpurple">#1E1132</color>
     <color name="iconpurple">#6134AC</color>
+    <color name="red">#FF0000</color>
+    <color name="grey">#808080</color>
 </resources>

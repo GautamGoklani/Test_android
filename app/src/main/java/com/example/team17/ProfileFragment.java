@@ -1,15 +1,19 @@
 package com.example.team17;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
@@ -24,6 +28,7 @@ public class ProfileFragment extends Fragment {
 
     Button logOut_btn;
     FirebaseAuth mAuth;
+    Button edit_acc,about_us;
     private String mParam1;
     private String mParam2;
 
@@ -49,6 +54,7 @@ public class ProfileFragment extends Fragment {
         }
     }
 
+    @SuppressLint("MissingInflatedId")
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment
@@ -56,6 +62,8 @@ public class ProfileFragment extends Fragment {
         ((MainActivity) getActivity()).setTitle("Profile");
 
         logOut_btn = view.findViewById(R.id.logOut_btn);
+        edit_acc=view.findViewById(R.id.edit_account);
+        about_us=view.findViewById(R.id.about_us);
         mAuth = FirebaseAuth.getInstance();
 
         logOut_btn.setOnClickListener(new View.OnClickListener() {
@@ -66,6 +74,21 @@ public class ProfileFragment extends Fragment {
                 ProfileFragment.this.startActivity(new Intent(getActivity(),LoginActivity.class));
             }
         });
+
+        edit_acc.setOnClickListener(view1 -> {
+            getFragmentManager()
+                .beginTransaction()
+                .replace(R.id.fragment, new editAccount())
+                .commit();
+        });
+
+        about_us.setOnClickListener(view1 -> {
+            getFragmentManager()
+                    .beginTransaction()
+                    .replace(R.id.fragment, new Aboutus())
+                    .commit();
+        });
+
         return view;
     }
 }

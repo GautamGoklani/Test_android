@@ -18,8 +18,21 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/profile_image"
+                android:layout_width="120dp"
+                android:layout_height="120dp"
+                android:src="@drawable/ic_baseline_account_circle_24"
+                style="@style/Widget.MaterialComponents.CircularProgressIndicator"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.075"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.03" />
+
             <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/name"
+                android:id="@+id/profile_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAllCaps="false"
@@ -27,24 +40,63 @@
                 android:textSize="25sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.053"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.463"
+                app:layout_constraintTop_toBottomOf="@+id/profile_image"
+                app:layout_constraintVertical_bias="0.016"
                 tools:ignore="HardcodedText,MissingConstraints" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/edit_account"
+                style="@style/Widget.AppCompat.CompoundButton.CheckBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:paddingTop="15dp"
+                android:paddingBottom="15dp"
+                android:text="Edit Account"
+                android:textSize="20sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/profile_name"
+                app:layout_constraintVertical_bias="0.024"
+                tools:ignore="UsingOnClickInXml" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/about_us"
+                style="@style/Widget.AppCompat.CompoundButton.CheckBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="About Us"
+                android:textSize="20sp"
+                android:paddingTop="15dp"
+                android:paddingBottom="15dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/edit_account"
+                app:layout_constraintVertical_bias="0.0" />
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/logOut_btn"
                 style="@style/Widget.Material3.Button.OutlinedButton"
-                android:layout_width="152dp"
-                android:layout_height="51dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
                 android:text="Logout"
+                android:textSize="22sp"
                 android:textStyle="bold"
+                app:iconGravity="start"
+                app:iconSize="25dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.498"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/name"
-                app:layout_constraintVertical_bias="0.148"
+                app:layout_constraintTop_toBottomOf="@+id/about_us"
+                app:layout_constraintVertical_bias="0.147"
                 tools:ignore="MissingConstraints,UsingOnClickInXml" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
