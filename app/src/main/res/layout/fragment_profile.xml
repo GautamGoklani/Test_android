@@ -65,19 +65,35 @@
                 tools:ignore="UsingOnClickInXml" />
 
             <com.google.android.material.button.MaterialButton
-                android:id="@+id/about_us"
+                android:id="@+id/contact_us"
                 style="@style/Widget.AppCompat.CompoundButton.CheckBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="About Us"
-                android:textSize="20sp"
                 android:paddingTop="15dp"
                 android:paddingBottom="15dp"
+                android:text="Contact Us"
+                android:textSize="20sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/edit_account"
+                app:layout_constraintVertical_bias="0.0" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/about_us"
+                style="@style/Widget.AppCompat.CompoundButton.CheckBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="15dp"
+                android:paddingBottom="15dp"
+                android:text="About Us"
+                android:textSize="20sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/contact_us"
                 app:layout_constraintVertical_bias="0.0" />
 
             <com.google.android.material.button.MaterialButton
@@ -88,6 +104,7 @@
                 android:layout_marginTop="24dp"
                 android:text="Logout"
                 android:textSize="22sp"
+                android:textColor="@color/black"
                 android:textStyle="bold"
                 app:iconGravity="start"
                 app:iconSize="25dp"

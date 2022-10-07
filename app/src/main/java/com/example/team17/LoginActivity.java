@@ -32,6 +32,8 @@ import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class LoginActivity extends AppCompatActivity {
     Button signIn_btn;
@@ -91,7 +93,7 @@ public class LoginActivity extends AppCompatActivity {
                     Toast.makeText(LoginActivity.this, "Hello, " + em1, Toast.LENGTH_SHORT).show();
                     startActivity(new Intent(LoginActivity.this, MainActivity.class));
                 } else {
-                    Toast.makeText(LoginActivity.this, "Try again later", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(LoginActivity.this, "Wrong Id or Password", Toast.LENGTH_SHORT).show();
                 }
             }
         });

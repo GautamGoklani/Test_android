@@ -13,4 +13,9 @@
     <color name="iconpurple">#6134AC</color>
     <color name="red">#FF0000</color>
     <color name="grey">#808080</color>
+    <color name="screen_color">#503795</color>
+    <color name="text_color">#E289F2</color>
+    <color name="btn_color">#B085FF</color>
+    <color name="bottom_nav_color">#2F125F</color>
+    <color name="bottom_nav_icon">#CBB7EC</color>
 </resources>

@@ -28,7 +28,7 @@ public class ProfileFragment extends Fragment {
 
     Button logOut_btn;
     FirebaseAuth mAuth;
-    Button edit_acc,about_us;
+    Button edit_acc,about_us,contact_us;
     private String mParam1;
     private String mParam2;
 
@@ -64,6 +64,7 @@ public class ProfileFragment extends Fragment {
         logOut_btn = view.findViewById(R.id.logOut_btn);
         edit_acc=view.findViewById(R.id.edit_account);
         about_us=view.findViewById(R.id.about_us);
+        contact_us=view.findViewById(R.id.contact_us);
         mAuth = FirebaseAuth.getInstance();
 
         logOut_btn.setOnClickListener(new View.OnClickListener() {
@@ -82,7 +83,9 @@ public class ProfileFragment extends Fragment {
         about_us.setOnClickListener(view1 -> {
             startActivity(new Intent(getActivity(),AboutUsActivity.class));
         });
-
+        contact_us.setOnClickListener(view1 -> {
+            startActivity(new Intent(getActivity(),ContactUsActivity.class));
+        });
         return view;
     }
 }

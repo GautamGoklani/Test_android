@@ -113,7 +113,7 @@ public class RegistrationActivity extends AppCompatActivity {
                     startActivity(new Intent(RegistrationActivity.this, LoginActivity.class));
                     finish();
                 } else {
-                    Toast.makeText(RegistrationActivity.this, "Try after some time.", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(RegistrationActivity.this, "Internet Connectivity Required", Toast.LENGTH_SHORT).show();
                 }
             }
         });
