@@ -8,4 +8,12 @@
         <item>Website Development</item>
         <item>System Design</item>
     </string-array>
+
+    <string name="paragraph_title_1">One of the fastest growing Digital Agency</string>
+    <string name="paragraph_1">This represents an almost 30% year-over-year growth. Digital Web Development and App Development as well as it includes Promotional videography, poster creation is one of the fastest growing advertising segments expected to reach 8.8% of all ads by 2022. This is growth rate of 13% compare to traditional TV ad spending and traditional web development that is only expected to grow with 0.4%.</string>
+    <string name="paragraph_title_2">Our working process to help you boost your business</string>
+    <string name="paragraph_perfect_strategy">At its most basic level, a strategy is a hypothesis. To make a good strategy, we precisely diagnose the problem which is being solved.</string>
+    <string name="paragraph_innovative_ideas">Our creative team transforms the way people think and thus, shifts how th entire market operates as a result.</string>
+    <string name="paragraph_effective_solutions">Our Team results into 1 productive of or capable of producing an effective and efficient results.</string>
+    <string name="paragraph_testing_launching">Our Team maintains a software testing which is the process of evaluating and verify that a software product or application does what is supposed to do.</string>
 </resources>

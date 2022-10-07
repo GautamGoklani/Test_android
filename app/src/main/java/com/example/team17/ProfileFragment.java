@@ -76,17 +76,11 @@ public class ProfileFragment extends Fragment {
         });
 
         edit_acc.setOnClickListener(view1 -> {
-            getFragmentManager()
-                .beginTransaction()
-                .replace(R.id.fragment, new editAccount())
-                .commit();
+            startActivity(new Intent(getActivity(),EditAccountActivity.class));
         });
 
         about_us.setOnClickListener(view1 -> {
-            getFragmentManager()
-                    .beginTransaction()
-                    .replace(R.id.fragment, new Aboutus())
-                    .commit();
+            startActivity(new Intent(getActivity(),AboutUsActivity.class));
         });
 
         return view;
