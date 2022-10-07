@@ -35,6 +35,7 @@ public class EditAccountActivity extends AppCompatActivity {
         aBar = getSupportActionBar();
         ColorDrawable cd = new ColorDrawable(Color.parseColor("#FFFFFF"));
         Objects.requireNonNull(aBar).setBackgroundDrawable(cd);
+        aBar.setTitle("Edit Account");
 
         mAuth = FirebaseAuth.getInstance();
         save = findViewById(R.id.save_btn);

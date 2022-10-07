@@ -20,7 +20,6 @@ public class AboutUsActivity extends AppCompatActivity {
         aBar = getSupportActionBar();
         ColorDrawable cd = new ColorDrawable(Color.parseColor("#FFFFFF"));
         Objects.requireNonNull(aBar).setBackgroundDrawable(cd);
-
-
+        aBar.setTitle("About Us");
     }
 }
