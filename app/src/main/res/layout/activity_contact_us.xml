@@ -128,7 +128,7 @@
                 tools:ignore="MissingConstraints" />
 
             <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
-                android:id="@+id/extendedFloatingActionButton2"
+                android:id="@+id/btn_call"
                 android:layout_width="wrap_content"
                 app:icon="@drawable/ic_baseline_call_24"
                 android:textSize="18sp"
@@ -144,6 +144,7 @@
                 tools:ignore="MissingConstraints" />
 
             <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+                android:id="@+id/btn_email"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="50dp"
@@ -154,7 +155,7 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.271"
-                app:layout_constraintStart_toEndOf="@+id/extendedFloatingActionButton2"
+                app:layout_constraintStart_toEndOf="@+id/btn_call"
                 app:layout_constraintTop_toBottomOf="@+id/phone_number_2"
                 app:layout_constraintVertical_bias="0.165"
                 tools:ignore="MissingConstraints" />

@@ -2,13 +2,14 @@ package com.example.team17;
 
 
 public class UserHelperClass {
-    String uname, email, phone, pass;
+    String uname, email, phone, pass, msg;
 
-    public UserHelperClass(String uname, String phone, String email, String pass) {
+    public UserHelperClass(String uname, String phone, String email, String pass, String msg) {
         this.uname = uname;
         this.email = email;
         this.phone = phone;
         this.pass = pass;
+        this.msg = msg;
     }
 
     public String getUname() {
@@ -41,5 +42,13 @@ public class UserHelperClass {
 
     public void setPass(String pass) {
         this.pass = pass;
+    }
+
+    public String getMsg() {
+        return msg;
+    }
+
+    public void setMsg(String msg) {
+        this.msg = msg;
     }
 }

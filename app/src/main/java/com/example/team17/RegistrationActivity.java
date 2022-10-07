@@ -107,7 +107,8 @@ public class RegistrationActivity extends AppCompatActivity {
                 if (task.isSuccessful()) {
                     database = FirebaseDatabase.getInstance();
                     reference = database.getReference("Users");
-                    UserHelperClass userHelperClass = new UserHelperClass(uname, phone, em1, pass1);
+                    String msg="hi";
+                    UserHelperClass userHelperClass = new UserHelperClass(uname, phone, em1, pass1, msg);
                     String userid=em1.replaceAll("@gmail.com"," ").replaceAll("@yahoo.com"," ");
                     reference.child(userid).setValue(userHelperClass);
                     startActivity(new Intent(RegistrationActivity.this, LoginActivity.class));
