@@ -69,13 +69,13 @@ public class RequestFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_request, container, false);
         ((MainActivity) getActivity()).setTitle("Requests");
 
+        mAuth=FirebaseAuth.getInstance();
         recyclerView = view.findViewById(R.id.requests_list);
-        database = FirebaseDatabase.getInstance().getReference("Requests");
 
 
-//        String email=mAuth.getCurrentUser().getEmail();
-//        String userid=email.replaceAll("@gmail.com"," ").replaceAll("@yahoo.com"," ");
-//        database=FirebaseDatabase.getInstance().getReference("Requests").child(userid);
+        String email_userid = mAuth.getCurrentUser().getEmail();
+        String userid = email_userid.replaceAll("@gmail.com", " ").replaceAll("@yahoo.com", " ");
+        database = FirebaseDatabase.getInstance().getReference("Requests").child(userid);
 
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(RequestFragment.this.getActivity()));
@@ -89,9 +89,10 @@ public class RequestFragment extends Fragment {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
 
                 for(DataSnapshot dataSnapshot : snapshot.getChildren()){
-                    RequestData data=dataSnapshot.getValue(RequestData.class);
-                    list.add(data);
-
+                    if(dataSnapshot.exists()) {
+                        RequestData data = dataSnapshot.getValue(RequestData.class);
+                        list.add(data);
+                    }
                 }
                 myAdapter.notifyDataSetChanged();
             }
