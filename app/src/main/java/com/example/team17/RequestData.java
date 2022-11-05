@@ -1,7 +1,7 @@
 package com.example.team17;
 
 public class RequestData {
-    String title,description,status,amount;
+    String title, description, status, amount;
 
     public String getTitle() {
         return title;

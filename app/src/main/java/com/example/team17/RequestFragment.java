@@ -18,6 +18,7 @@ import android.widget.Button;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -39,6 +40,7 @@ public class RequestFragment extends Fragment {
     DatabaseReference database;
     RequestAdapter myAdapter;
     ArrayList<RequestData> list;
+    FloatingActionButton addreq;
 
     public RequestFragment() {
         // Required empty public constructor
@@ -62,6 +64,7 @@ public class RequestFragment extends Fragment {
         }
     }
 
+    @SuppressLint("MissingInflatedId")
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -69,7 +72,7 @@ public class RequestFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_request, container, false);
         ((MainActivity) getActivity()).setTitle("Requests");
 
-        mAuth=FirebaseAuth.getInstance();
+        mAuth = FirebaseAuth.getInstance();
         recyclerView = view.findViewById(R.id.requests_list);
 
 
@@ -81,15 +84,15 @@ public class RequestFragment extends Fragment {
         recyclerView.setLayoutManager(new LinearLayoutManager(RequestFragment.this.getActivity()));
 
         list = new ArrayList<>();
-        myAdapter = new RequestAdapter(RequestFragment.this.getActivity(),list);
+        myAdapter = new RequestAdapter(RequestFragment.this.getActivity(), list);
         recyclerView.setAdapter(myAdapter);
         database.addValueEventListener(new ValueEventListener() {
             @SuppressLint("NotifyDataSetChanged")
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
 
-                for(DataSnapshot dataSnapshot : snapshot.getChildren()){
-                    if(dataSnapshot.exists()) {
+                for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+                    if (dataSnapshot.exists()) {
                         RequestData data = dataSnapshot.getValue(RequestData.class);
                         list.add(data);
                     }
@@ -102,6 +105,7 @@ public class RequestFragment extends Fragment {
 
             }
         });
+
         return view;
     }
 }

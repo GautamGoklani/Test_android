@@ -107,10 +107,10 @@ public class RegistrationActivity extends AppCompatActivity {
                 if (task.isSuccessful()) {
                     database = FirebaseDatabase.getInstance();
                     reference = database.getReference("Users");
-                    String msg="hi";
+                    String msg = "hi";
                     String method = "registration";
                     UserHelperClass userHelperClass = new UserHelperClass(uname, phone, em1, pass1, msg, method);
-                    String userid=em1.replaceAll("@gmail.com"," ").replaceAll("@yahoo.com"," ");
+                    String userid = em1.replaceAll("@gmail.com", " ").replaceAll("@yahoo.com", " ");
                     reference.child(userid).setValue(userHelperClass);
                     startActivity(new Intent(RegistrationActivity.this, LoginActivity.class));
                     finish();
@@ -120,6 +120,7 @@ public class RegistrationActivity extends AppCompatActivity {
             }
         });
     }
+
     private boolean validateUserNameData() {
         String val = reg_temail.getText().toString().trim();
         String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";

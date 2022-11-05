@@ -14,6 +14,7 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
 
 import java.util.Objects;
@@ -21,8 +22,9 @@ import java.util.Objects;
 public class MainActivity extends AppCompatActivity {
 
     FirebaseAuth mAuth;
+    FloatingActionButton addreq;
 
-    @SuppressLint("NonConstantResourceId")
+    @SuppressLint({"NonConstantResourceId", "MissingInflatedId"})
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,14 +35,16 @@ public class MainActivity extends AppCompatActivity {
         Objects.requireNonNull(aBar).setBackgroundDrawable(cd);
 
         mAuth = FirebaseAuth.getInstance();
-
+        addreq = findViewById(R.id.add_request);
+        addreq.setVisibility(View.INVISIBLE);
+        addreq.setEnabled(false);
         FragmentManager ft = getSupportFragmentManager();
         ft.beginTransaction()
                 .replace(R.id.fragment, HomeFragment.class, null)
                 .setReorderingAllowed(true)
                 .commit();
 
-        BottomNavigationView nav = findViewById(R.id.bottom_navigation);
+        @SuppressLint({"MissingInflatedId", "LocalSuppress"}) BottomNavigationView nav = findViewById(R.id.bottom_navigation);
         nav.setOnNavigationItemSelectedListener(item -> {
             switch (item.getItemId()) {
                 case R.id.home:
@@ -49,6 +53,8 @@ public class MainActivity extends AppCompatActivity {
                             .replace(R.id.fragment, HomeFragment.class, null)
                             .setReorderingAllowed(true)
                             .commit();
+                    addreq.setVisibility(View.INVISIBLE);
+                    addreq.setEnabled(false);
                     return true;
                 case R.id.project:
                     FragmentManager ft2 = getSupportFragmentManager();
@@ -56,6 +62,8 @@ public class MainActivity extends AppCompatActivity {
                             .replace(R.id.fragment, ProjectFragment.class, null)
                             .setReorderingAllowed(true)
                             .commit();
+                    addreq.setVisibility(View.INVISIBLE);
+                    addreq.setEnabled(false);
                     return true;
                 case R.id.requests:
                     FragmentManager ft3 = getSupportFragmentManager();
@@ -63,6 +71,8 @@ public class MainActivity extends AppCompatActivity {
                             .replace(R.id.fragment, RequestFragment.class, null)
                             .setReorderingAllowed(true)
                             .commit();
+                    addreq.setVisibility(View.VISIBLE);
+                    addreq.setEnabled(true);
                     return true;
                 case R.id.profile:
                     FragmentManager ft4 = getSupportFragmentManager();
@@ -70,14 +80,19 @@ public class MainActivity extends AppCompatActivity {
                             .replace(R.id.fragment, ProfileFragment.class, null)
                             .setReorderingAllowed(true)
                             .commit();
+                    addreq.setVisibility(View.INVISIBLE);
+                    addreq.setEnabled(false);
                     return true;
             }
             return false;
         });
-    }
 
-    public void addreq(View view) {
-        Intent i=new Intent(MainActivity.this,Addrequest.class);
-        startActivity(i);
+        addreq.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(MainActivity.this, Addrequest.class);
+                startActivity(i);
+            }
+        });
     }
 }

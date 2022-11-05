@@ -4,24 +4,25 @@
         android:id="@+id/home"
         android:enabled="true"
         android:icon="@drawable/ic_baseline_home_24"
-        android:title="Home"/>
+        android:title="Home"
+        tools:ignore="HardcodedText" />
     <item
         android:id="@+id/project"
         android:enabled="true"
         android:icon="@drawable/ic_baseline_folder_24"
-        android:title="Project"/>
-    <item
-        android:enabled="false"
-        tools:ignore="MenuTitle" />
+        android:title="Project"
+        tools:ignore="HardcodedText" />
     <item
         android:id="@+id/requests"
         android:enabled="true"
         android:icon="@drawable/ic_baseline_article_24"
-        android:title="Requests"/>
+        android:title="Requests"
+        tools:ignore="HardcodedText" />
     <item
         android:id="@+id/profile"
         android:enabled="true"
         android:icon="@drawable/ic_baseline_person_24"
-        android:title="Profile"/>
+        android:title="Profile"
+        tools:ignore="HardcodedText" />
 
 </menu>

@@ -25,14 +25,14 @@ public class RequestAdapter extends RecyclerView.Adapter<RequestAdapter.MyViewHo
     @NonNull
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View v= LayoutInflater.from(context).inflate(R.layout.item,parent,false);
+        View v = LayoutInflater.from(context).inflate(R.layout.item, parent, false);
         return new MyViewHolder(v);
     }
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
 
-        RequestData data= list.get(position);
+        RequestData data = list.get(position);
         holder.title.setText(data.getTitle());
         holder.description.setText(data.getDescription());
         holder.status.setText(data.getStatus());
@@ -51,10 +51,10 @@ public class RequestAdapter extends RecyclerView.Adapter<RequestAdapter.MyViewHo
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
 
-            title=itemView.findViewById(R.id.product_title);
-            description=itemView.findViewById(R.id.product_description);
-            status=itemView.findViewById(R.id.product_status);
-            amount=itemView.findViewById(R.id.product_amount);
+            title = itemView.findViewById(R.id.product_title);
+            description = itemView.findViewById(R.id.product_description);
+            status = itemView.findViewById(R.id.product_status);
+            amount = itemView.findViewById(R.id.product_amount);
         }
     }
 }

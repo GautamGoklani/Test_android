@@ -19,7 +19,7 @@ public class ProjectFragment extends Fragment {
 
     private String mParam1;
     private String mParam2;
-    CardView cd1,cd2,cd3;
+    CardView cd1, cd2, cd3;
 
     public ProjectFragment() {
         // Required empty public constructor
@@ -48,13 +48,13 @@ public class ProjectFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view=inflater.inflate(R.layout.fragment_project, container, false);
+        View view = inflater.inflate(R.layout.fragment_project, container, false);
 
         ((MainActivity) getActivity()).setTitle("Project");
 
-        cd1=view.findViewById(R.id.project_card1);
-        cd2=view.findViewById(R.id.project_card2);
-        cd3=view.findViewById(R.id.project_card3);
+        cd1 = view.findViewById(R.id.project_card1);
+        cd2 = view.findViewById(R.id.project_card2);
+        cd3 = view.findViewById(R.id.project_card3);
 
         cd1.setOnClickListener(new View.OnClickListener() {
             @Override

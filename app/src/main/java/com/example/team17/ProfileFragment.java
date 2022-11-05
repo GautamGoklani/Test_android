@@ -86,7 +86,7 @@ public class ProfileFragment extends Fragment {
             @SuppressLint("UseRequireInsteadOfGet")
             @Override
             public void onClick(View view) {
-                if(method=="google"){
+                if (method == "google") {
                     gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                             .requestIdToken(getString(R.string.default_web_client_id))
                             .requestEmail()
@@ -99,8 +99,7 @@ public class ProfileFragment extends Fragment {
                     Toast.makeText(getActivity(), "Logout Successful !", Toast.LENGTH_SHORT).show();
                     ProfileFragment.this.startActivity(new Intent(getActivity(), LoginActivity.class));
                     getActivity().finish();
-                }
-                else {
+                } else {
                     mAuth.signOut();
                     Toast.makeText(getActivity(), "Logout Successful !", Toast.LENGTH_SHORT).show();
                     ProfileFragment.this.startActivity(new Intent(getActivity(), LoginActivity.class));
@@ -126,14 +125,14 @@ public class ProfileFragment extends Fragment {
         database = FirebaseDatabase.getInstance();
         reference = database.getReference("Users");
         String email_userid = mAuth.getCurrentUser().getEmail();
-        String userid = email_userid.replaceAll("@gmail.com", " ").replaceAll("@rku.ac.in"," ").replaceAll("@yahoo.com", " ");
+        String userid = email_userid.replaceAll("@gmail.com", " ").replaceAll("@rku.ac.in", " ").replaceAll("@yahoo.com", " ");
         reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 String name1 = null;
-                if(snapshot.exists()){
-                    name1=snapshot.child(userid).child("uname").getValue(String.class);
-                    method=snapshot.child(userid).child("method").getValue(String.class);
+                if (snapshot.exists()) {
+                    name1 = snapshot.child(userid).child("uname").getValue(String.class);
+                    method = snapshot.child(userid).child("method").getValue(String.class);
                 }
                 profile_name.setText(name1);
             }
