@@ -2,14 +2,30 @@ package com.example.team17;
 
 
 public class UserHelperClass {
-    String uname, email, phone, pass, msg;
+    String uname, email, phone, pass, msg, method;
 
-    public UserHelperClass(String uname, String phone, String email, String pass, String msg) {
+    public UserHelperClass(String uname, String email, String msg, String method) {
+        this.uname = uname;
+        this.email = email;
+        this.msg = msg;
+        this.method = method;
+    }
+
+    public UserHelperClass(String uname, String phone, String email, String pass, String msg, String method) {
         this.uname = uname;
         this.email = email;
         this.phone = phone;
         this.pass = pass;
         this.msg = msg;
+        this.method = method;
+    }
+
+    public String getMethod() {
+        return method;
+    }
+
+    public void setMethod(String method) {
+        this.method = method;
     }
 
     public String getUname() {

@@ -14,12 +14,18 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.auth.api.signin.GoogleSignIn;
+import com.google.android.gms.auth.api.signin.GoogleSignInClient;
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+
+import java.util.Objects;
 
 public class ProfileFragment extends Fragment {
 
@@ -32,6 +38,9 @@ public class ProfileFragment extends Fragment {
     Button edit_acc, about_us, contact_us;
     FirebaseDatabase database;
     DatabaseReference reference;
+    GoogleSignInClient gsc;
+    GoogleSignInOptions gso;
+    String method = null;
     private String mParam1;
     private String mParam2;
 
@@ -74,12 +83,29 @@ public class ProfileFragment extends Fragment {
         retrieveData();
 
         logOut_btn.setOnClickListener(new View.OnClickListener() {
+            @SuppressLint("UseRequireInsteadOfGet")
             @Override
             public void onClick(View view) {
-                mAuth.signOut();
-                Toast.makeText(getActivity(), "Logout SuccessFUlly !", Toast.LENGTH_SHORT).show();
-                ProfileFragment.this.startActivity(new Intent(getActivity(), LoginActivity.class));
-                getActivity().finish();
+                if(method=="google"){
+                    gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                            .requestIdToken(getString(R.string.default_web_client_id))
+                            .requestEmail()
+                            .build();
+
+                    gsc = GoogleSignIn.getClient(ProfileFragment.this.getActivity(), gso);
+                    gsc.signOut();
+
+                    mAuth.signOut();
+                    Toast.makeText(getActivity(), "Logout Successful !", Toast.LENGTH_SHORT).show();
+                    ProfileFragment.this.startActivity(new Intent(getActivity(), LoginActivity.class));
+                    getActivity().finish();
+                }
+                else {
+                    mAuth.signOut();
+                    Toast.makeText(getActivity(), "Logout Successful !", Toast.LENGTH_SHORT).show();
+                    ProfileFragment.this.startActivity(new Intent(getActivity(), LoginActivity.class));
+                    getActivity().finish();
+                }
             }
         });
 
@@ -100,13 +126,14 @@ public class ProfileFragment extends Fragment {
         database = FirebaseDatabase.getInstance();
         reference = database.getReference("Users");
         String email_userid = mAuth.getCurrentUser().getEmail();
-        String userid = email_userid.replaceAll("@gmail.com", " ").replaceAll("@yahoo.com", " ");
+        String userid = email_userid.replaceAll("@gmail.com", " ").replaceAll("@rku.ac.in"," ").replaceAll("@yahoo.com", " ");
         reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 String name1 = null;
                 if(snapshot.exists()){
                     name1=snapshot.child(userid).child("uname").getValue(String.class);
+                    method=snapshot.child(userid).child("method").getValue(String.class);
                 }
                 profile_name.setText(name1);
             }
