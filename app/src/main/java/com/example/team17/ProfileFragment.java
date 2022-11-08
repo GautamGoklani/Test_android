@@ -111,25 +111,19 @@ public class ProfileFragment extends Fragment {
             @SuppressLint("UseRequireInsteadOfGet")
             @Override
             public void onClick(View view) {
-                if (method == "google") {
-                    gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-                            .requestIdToken(getString(R.string.default_web_client_id))
-                            .requestEmail()
-                            .build();
+                gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                        .requestIdToken(getString(R.string.default_web_client_id))
+                        .requestEmail()
+                        .build();
 
-                    gsc = GoogleSignIn.getClient(ProfileFragment.this.getActivity(), gso);
-                    gsc.signOut();
+                gsc = GoogleSignIn.getClient(ProfileFragment.this.getActivity(), gso);
+                gsc.signOut();
 
-                    mAuth.signOut();
-                    Toast.makeText(getActivity(), "Logout Successful !", Toast.LENGTH_SHORT).show();
-                    ProfileFragment.this.startActivity(new Intent(getActivity(), LoginActivity.class));
-                    getActivity().finish();
-                } else {
-                    mAuth.signOut();
-                    Toast.makeText(getActivity(), "Logout Successful !", Toast.LENGTH_SHORT).show();
-                    ProfileFragment.this.startActivity(new Intent(getActivity(), LoginActivity.class));
-                    getActivity().finish();
-                }
+                mAuth.signOut();
+                Toast.makeText(getActivity(), "Logout Successful !", Toast.LENGTH_SHORT).show();
+                ProfileFragment.this.startActivity(new Intent(getActivity(), LoginActivity.class));
+                getActivity().finish();
+
             }
         });
 
@@ -165,7 +159,9 @@ public class ProfileFragment extends Fragment {
                 }
                 profile_name.setText(name1);
                 profile_email.setText(email1);
-                Picasso.get().load(url).into(image);
+                if(url!=null) {
+                    Picasso.get().load(url).into(image);
+                }
             }
 
             @Override
@@ -201,12 +197,12 @@ public class ProfileFragment extends Fragment {
                 reference.child(userid).child("url").setValue(url.toString());
                 StorageReference ref = storageReference.child("images/" + name1);
                 ref.putFile(url).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-                                    @Override
-                                    public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                                        progressDialog.dismiss();
-                                        Toast.makeText(getActivity(), "Image Uploaded!!", Toast.LENGTH_SHORT).show();
-                                    }
-                                })
+                            @Override
+                            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                                progressDialog.dismiss();
+                                Toast.makeText(getActivity(), "Image Uploaded!!", Toast.LENGTH_SHORT).show();
+                            }
+                        })
 
                         .addOnFailureListener(new OnFailureListener() {
                             @Override
