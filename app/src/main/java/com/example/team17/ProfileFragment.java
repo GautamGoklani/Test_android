@@ -1,12 +1,12 @@
 package com.example.team17;
 
+import static android.app.Activity.RESULT_OK;
+
 import android.annotation.SuppressLint;
+import android.app.ProgressDialog;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.fragment.app.Fragment;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,18 +14,27 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
+
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.OnProgressListener;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
+import com.squareup.picasso.Picasso;
 
-import java.util.Objects;
+import de.hdodenhof.circleimageview.CircleImageView;
 
 public class ProfileFragment extends Fragment {
 
@@ -41,6 +50,11 @@ public class ProfileFragment extends Fragment {
     GoogleSignInClient gsc;
     GoogleSignInOptions gso;
     String method = null;
+    CircleImageView image;
+    Uri url;
+    FirebaseStorage storage;
+    StorageReference storageReference;
+
     private String mParam1;
     private String mParam2;
 
@@ -79,9 +93,19 @@ public class ProfileFragment extends Fragment {
         contact_us = view.findViewById(R.id.contact_us);
         profile_name = view.findViewById(R.id.profile_name);
         profile_email = view.findViewById(R.id.profile_email);
+        image = view.findViewById(R.id.profile_image);
         mAuth = FirebaseAuth.getInstance();
-
+        storage = FirebaseStorage.getInstance();
+        storageReference = storage.getReference();
         retrieveData();
+
+        image.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                selectImage();
+            }
+        });
+
 
         logOut_btn.setOnClickListener(new View.OnClickListener() {
             @SuppressLint("UseRequireInsteadOfGet")
@@ -122,9 +146,10 @@ public class ProfileFragment extends Fragment {
         return view;
     }
 
-    private void retrieveData() {
+    private String retrieveData() {
         database = FirebaseDatabase.getInstance();
         reference = database.getReference("Users");
+        final String[] name = new String[1];
         String email_userid = mAuth.getCurrentUser().getEmail();
         String userid = email_userid.replaceAll("@gmail.com", " ").replaceAll("@rku.ac.in", " ").replaceAll("@yahoo.com", " ");
         reference.addValueEventListener(new ValueEventListener() {
@@ -132,18 +157,79 @@ public class ProfileFragment extends Fragment {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 String name1 = null;
                 String email1 = null;
+                String url = null;
                 if (snapshot.exists()) {
                     name1 = snapshot.child(userid).child("uname").getValue(String.class);
                     method = snapshot.child(userid).child("method").getValue(String.class);
                     email1 = snapshot.child(userid).child("email").getValue(String.class);
+                    url = snapshot.child(userid).child("url").getValue(String.class);
                 }
                 profile_name.setText(name1);
                 profile_email.setText(email1);
+                Picasso.get().load(url).into(image);
+                name[0] = name1;
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
             }
         });
+        return name[0];
     }
+
+
+    private void selectImage() {
+        Intent intent = new Intent();
+        intent.setType("image/*");
+        intent.setAction(Intent.ACTION_GET_CONTENT);
+        startActivityForResult(Intent.createChooser(intent, "Select Image from here..."), 22);
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == 22 && resultCode == RESULT_OK && data != null && data.getData() != null) {
+            url = data.getData();
+            if (url != null) {
+                ProgressDialog progressDialog = new ProgressDialog(getActivity());
+                progressDialog.setTitle("Uploading...");
+                progressDialog.show();
+
+                reference = database.getReference("Users");
+                String name1 = retrieveData();
+                reference = database.getReference("Users");
+                String email_userid = mAuth.getCurrentUser().getEmail();
+                String userid = email_userid.replaceAll("@gmail.com", " ").replaceAll("@rku.ac.in", " ").replaceAll("@yahoo.com", " ");
+                reference.child(userid).child("url").setValue(url.toString());
+                StorageReference ref = storageReference.child("images/" + name1);
+                ref.putFile(url).addOnSuccessListener(
+                                new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                                    @Override
+                                    public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                                        progressDialog.dismiss();
+                                        Toast.makeText(getActivity(), "Image Uploaded!!", Toast.LENGTH_SHORT).show();
+                                    }
+                                })
+
+                        .addOnFailureListener(new OnFailureListener() {
+                            @Override
+                            public void onFailure(@NonNull Exception e) {
+
+                                // Error, Image not uploaded
+                                progressDialog.dismiss();
+                                Toast.makeText(getActivity(), "Failed " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                            }
+                        })
+                        .addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
+                            @Override
+                            public void onProgress(
+                                    UploadTask.TaskSnapshot taskSnapshot) {
+                                double progress = (100.0 * taskSnapshot.getBytesTransferred() / taskSnapshot.getTotalByteCount());
+                                progressDialog.setMessage("Uploaded " + (int) progress + "%");
+                            }
+                        });
+            }
+        }
+    }
+
 }

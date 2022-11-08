@@ -33,7 +33,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
 
-                    <androidx.appcompat.widget.AppCompatImageView
+                    <de.hdodenhof.circleimageview.CircleImageView
                         android:id="@+id/profile_image"
                         style="@style/Widget.MaterialComponents.CircularProgressIndicator"
                         android:layout_width="@dimen/_80sdp"

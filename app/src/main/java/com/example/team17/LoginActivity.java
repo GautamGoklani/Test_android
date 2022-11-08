@@ -1,36 +1,27 @@
 package com.example.team17;
 
-import static android.content.ContentValues.TAG;
-
 import android.annotation.SuppressLint;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.net.Uri;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.constraintlayout.utils.widget.ImageFilterButton;
-
 
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
-
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
-import com.google.android.gms.common.SignInButton;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.AuthCredential;
@@ -54,6 +45,7 @@ public class LoginActivity extends AppCompatActivity {
     DatabaseReference reference;
     GoogleSignInOptions gso;
     GoogleSignInClient gsc;
+    Uri imageUri;
 
     @SuppressLint("ResourceAsColor")
     @Override
@@ -217,11 +209,13 @@ public class LoginActivity extends AppCompatActivity {
     private void storeDataFirebase() {
         String uname = mAuth.getCurrentUser().getDisplayName();
         String em1 = mAuth.getCurrentUser().getEmail();
+        Uri photo = mAuth.getCurrentUser().getPhotoUrl();
         String method = "google";
+        String url = photo.toString();
         database = FirebaseDatabase.getInstance();
         reference = database.getReference("Users");
         String msg = "hi";
-        UserHelperClass userHelperClass = new UserHelperClass(uname, em1, msg, method);
+        UserHelperClass userHelperClass = new UserHelperClass(uname, em1, msg, method, url);
         String userid = em1.replaceAll("@gmail.com", " ").replaceAll("@rku.ac.in", " ").replaceAll("@yahoo.com", " ");
         reference.child(userid).setValue(userHelperClass);
     }
