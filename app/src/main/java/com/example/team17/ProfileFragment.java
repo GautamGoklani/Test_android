@@ -149,7 +149,6 @@ public class ProfileFragment extends Fragment {
     private String retrieveData() {
         database = FirebaseDatabase.getInstance();
         reference = database.getReference("Users");
-        final String[] name = new String[1];
         String email_userid = mAuth.getCurrentUser().getEmail();
         String userid = email_userid.replaceAll("@gmail.com", " ").replaceAll("@rku.ac.in", " ").replaceAll("@yahoo.com", " ");
         reference.addValueEventListener(new ValueEventListener() {
@@ -167,14 +166,13 @@ public class ProfileFragment extends Fragment {
                 profile_name.setText(name1);
                 profile_email.setText(email1);
                 Picasso.get().load(url).into(image);
-                name[0] = name1;
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
             }
         });
-        return name[0];
+        return profile_name.getText().toString();
     }
 
 
@@ -202,8 +200,7 @@ public class ProfileFragment extends Fragment {
                 String userid = email_userid.replaceAll("@gmail.com", " ").replaceAll("@rku.ac.in", " ").replaceAll("@yahoo.com", " ");
                 reference.child(userid).child("url").setValue(url.toString());
                 StorageReference ref = storageReference.child("images/" + name1);
-                ref.putFile(url).addOnSuccessListener(
-                                new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                ref.putFile(url).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                                     @Override
                                     public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                                         progressDialog.dismiss();
