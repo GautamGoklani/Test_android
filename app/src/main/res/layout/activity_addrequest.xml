@@ -10,9 +10,7 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="20dp">
-
+        android:layout_height="match_parent">
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/add_product"
@@ -27,8 +25,22 @@
             app:layout_constraintHorizontal_bias="0.47"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.0"
+            app:layout_constraintVertical_bias="0.01999998"
             tools:ignore="MissingConstraints" />
+
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/lottieAnimationView3"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_200sdp"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:layout_marginStart="@dimen/_8sdp"
+            android:layout_marginEnd="@dimen/_8sdp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/add_product"
+            app:lottie_autoPlay="true"
+            app:lottie_loop="true"
+            app:lottie_rawRes="@raw/add_request" />
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/pro_title"
@@ -40,7 +52,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/add_product"
+            app:layout_constraintTop_toBottomOf="@+id/lottieAnimationView3"
             app:layout_constraintVertical_bias="0.04"
             tools:ignore="InvalidId">
 
@@ -73,21 +85,33 @@
                 android:maxLines="6" />
         </com.google.android.material.textfield.TextInputLayout>
 
-        <androidx.appcompat.widget.AppCompatSpinner
-            android:id="@+id/category"
-            style="@style/ThemeOverlay.Material3.AutoCompleteTextView.OutlinedBox.Dense"
-            android:paddingTop="15dp"
-            android:paddingBottom="15dp"
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/reg_category_label"
+            style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:entries="@array/simple_items"
-            app:barrierAllowsGoneWidgets="true"
-            app:barrierDirection="bottom"
+            android:hint="Type of Product Needed"
+            android:pointerIcon="all_scroll"
+            app:endIconMode="dropdown_menu"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/description"
-            app:layout_constraintVertical_bias="0.033" />
+            app:layout_constraintVertical_bias="0.034"
+            tools:ignore="InvalidId,UnusedAttribute">
+
+            <com.google.android.material.textfield.MaterialAutoCompleteTextView
+                android:id="@+id/category"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:inputType="text"
+                android:paddingLeft="15dp"
+                android:paddingBottom="15dp"
+                android:paddingTop="15dp"
+                android:maxLines="6" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/features"
@@ -99,8 +123,8 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/category"
-            app:layout_constraintVertical_bias="0.04"
+            app:layout_constraintTop_toBottomOf="@+id/reg_category_label"
+            app:layout_constraintVertical_bias="0.060000002"
             tools:ignore="InvalidId">
 
             <com.google.android.material.textfield.TextInputEditText
@@ -115,7 +139,7 @@
             android:id="@+id/add"
             android:layout_width="156dp"
             android:layout_height="53dp"
-            android:layout_marginTop="78dp"
+            android:layout_marginTop="24dp"
             android:backgroundTint="@color/purple_500"
             android:gravity="center"
             android:onClick="AddItem"

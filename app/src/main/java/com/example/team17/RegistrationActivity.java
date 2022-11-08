@@ -22,6 +22,7 @@ import com.google.android.gms.common.SignInButton;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.AuthResult;
@@ -35,7 +36,7 @@ import java.util.Map;
 
 public class RegistrationActivity extends AppCompatActivity {
 
-    Button reg_signUp_btn;
+    ExtendedFloatingActionButton reg_signUp_btn;
     TextInputEditText reg_temail, reg_tpass, reg_tname, reg_tphone, reg_tconpass;
     TextInputLayout reg_em_label, reg_pas_label, reg_tname_label, reg_tphone_label, reg_tconpass_label;
     FirebaseAuth mAuth;
@@ -54,13 +55,11 @@ public class RegistrationActivity extends AppCompatActivity {
         reg_tpass = findViewById(R.id.reg_password1);
         reg_tname = findViewById(R.id.reg_name1);
         reg_tphone = findViewById(R.id.reg_phone);
-        reg_tconpass = findViewById(R.id.reg_confirm_password);
 
         reg_em_label = findViewById(R.id.reg_uname_label);
         reg_pas_label = findViewById(R.id.reg_pass_label);
         reg_tname_label = findViewById(R.id.reg_name_label);
         reg_tphone_label = findViewById(R.id.reg_phone_label);
-        reg_tconpass_label = findViewById(R.id.reg_confirm_pass_label);
 
         //white action bar
         ActionBar aBar;
@@ -74,7 +73,7 @@ public class RegistrationActivity extends AppCompatActivity {
         reg_signUp_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (!validateUserNameData() | !validatePhoneData() | !validatePasswordData() | !validateNameData() | !validateConfirmPasswordData()) {
+                if (!validateUserNameData() | !validatePhoneData() | !validatePasswordData() | !validateNameData()) {
                     return;
                 } else {
                     signIn();
@@ -177,22 +176,6 @@ public class RegistrationActivity extends AppCompatActivity {
             return true;
         } else {
             reg_tphone_label.setError("Not a valid phone number");
-            return false;
-        }
-    }
-
-    private boolean validateConfirmPasswordData() {
-        String val = reg_tconpass.getText().toString().trim();
-        String val2 = reg_tpass.getText().toString().trim();
-        if (val.isEmpty()) {
-            reg_em_label.setError("Password Cannot be empty");
-            return false;
-        } else if (val.matches(val2)) {
-            reg_tconpass_label.setError(null);
-            reg_tconpass_label.setErrorEnabled(false);
-            return true;
-        } else {
-            reg_tconpass_label.setError("Confirm Password doesn't match upper password");
             return false;
         }
     }

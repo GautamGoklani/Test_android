@@ -18,40 +18,71 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/profile_image"
-                android:layout_width="@dimen/_110sdp"
-                android:layout_height="@dimen/_110sdp"
-                android:src="@drawable/ic_baseline_account_circle_24"
-                style="@style/Widget.MaterialComponents.CircularProgressIndicator"
-                app:layout_constraintBottom_toBottomOf="parent"
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cardView"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_160sdp"
+                android:layout_marginStart="@dimen/_8sdp"
+                android:layout_marginEnd="@dimen/_8sdp"
+                app:cardCornerRadius="@dimen/_20sdp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.075"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.03" />
+                app:layout_constraintTop_toTopOf="parent">
 
-            <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/profile_name"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAllCaps="false"
-                android:textColor="@color/black"
-                android:textSize="@dimen/_20sdp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.12"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/profile_image"
-                app:layout_constraintVertical_bias="0.028"
-                tools:ignore="HardcodedText,MissingConstraints" />
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/profile_image"
+                        style="@style/Widget.MaterialComponents.CircularProgressIndicator"
+                        android:layout_width="@dimen/_80sdp"
+                        android:layout_height="@dimen/_80sdp"
+                        android:src="@drawable/ic_baseline_account_circle_24"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintVertical_bias="0.100000024" />
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/profile_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:textAllCaps="false"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_20sdp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.498"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/profile_image"
+                        app:layout_constraintVertical_bias="0.01999998"
+                        tools:ignore="HardcodedText,MissingConstraints" />
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/profile_email"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAllCaps="false"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_15sdp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.498"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/profile_name"
+                        app:layout_constraintVertical_bias="0.110000014"
+                        tools:ignore="HardcodedText,MissingConstraints" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </androidx.cardview.widget.CardView>
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/edit_account"
                 style="@style/Widget.AppCompat.CompoundButton.CheckBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
                 android:paddingTop="15dp"
                 android:paddingBottom="15dp"
                 android:text="Edit Account"
@@ -60,8 +91,8 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/profile_name"
-                app:layout_constraintVertical_bias="0.024"
+                app:layout_constraintTop_toBottomOf="@+id/cardView"
+                app:layout_constraintVertical_bias="0.092"
                 tools:ignore="UsingOnClickInXml" />
 
             <com.google.android.material.button.MaterialButton
@@ -78,7 +109,7 @@
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/edit_account"
-                app:layout_constraintVertical_bias="0.0" />
+                app:layout_constraintVertical_bias="0.053" />
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/about_us"
@@ -94,7 +125,7 @@
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/contact_us"
-                app:layout_constraintVertical_bias="0.0" />
+                app:layout_constraintVertical_bias="0.088" />
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/logOut_btn"

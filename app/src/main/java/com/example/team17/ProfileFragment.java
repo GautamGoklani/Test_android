@@ -33,7 +33,7 @@ public class ProfileFragment extends Fragment {
     private static final String ARG_PARAM2 = "param2";
 
     Button logOut_btn;
-    TextView profile_name;
+    TextView profile_name, profile_email;
     FirebaseAuth mAuth;
     Button edit_acc, about_us, contact_us;
     FirebaseDatabase database;
@@ -78,6 +78,7 @@ public class ProfileFragment extends Fragment {
         about_us = view.findViewById(R.id.about_us);
         contact_us = view.findViewById(R.id.contact_us);
         profile_name = view.findViewById(R.id.profile_name);
+        profile_email = view.findViewById(R.id.profile_email);
         mAuth = FirebaseAuth.getInstance();
 
         retrieveData();
@@ -130,11 +131,14 @@ public class ProfileFragment extends Fragment {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 String name1 = null;
+                String email1 = null;
                 if (snapshot.exists()) {
                     name1 = snapshot.child(userid).child("uname").getValue(String.class);
                     method = snapshot.child(userid).child("method").getValue(String.class);
+                    email1 = snapshot.child(userid).child("email").getValue(String.class);
                 }
                 profile_name.setText(name1);
+                profile_email.setText(email1);
             }
 
             @Override

@@ -13,17 +13,31 @@
         android:layout_height="match_parent"
         tools:ignore="ScrollViewSize">
 
+        <com.airbnb.lottie.LottieAnimationView
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_250sdp"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:layout_marginEnd="@dimen/_8sdp"
+            android:layout_marginStart="@dimen/_8sdp"
+            app:layout_constraintDimensionRatio="16:9"
+            android:scaleType="fitXY"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:lottie_autoPlay="true"
+            app:lottie_loop="true"
+            app:lottie_rawRes="@raw/lf30_editor_subtwdxc" />
+
         <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/shapeableImageView3"
-            android:layout_width="250dp"
-            android:layout_height="250dp"
+            android:layout_width="@dimen/_170sdp"
+            android:layout_height="@dimen/_170sdp"
             android:src="@drawable/ic_team17"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.496"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.141" />
+            app:layout_constraintVertical_bias="0.354" />
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/materialTextView2"
@@ -38,7 +52,7 @@
             app:layout_constraintHorizontal_bias="0.496"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/shapeableImageView3"
-            app:layout_constraintVertical_bias="0.24"
+            app:layout_constraintVertical_bias="0.19999999"
             tools:ignore="HardcodedText" />
 
         <com.google.android.material.textview.MaterialTextView

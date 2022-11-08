@@ -12,11 +12,26 @@
         android:layout_height="match_parent"
         android:fillViewport="true"
         tools:ignore="ScrollViewCount"
-        tools:layout_editor_absoluteY="212dp">
+        tools:layout_editor_absoluteY="@dimen/_212sdp">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
+
+
+            <com.airbnb.lottie.LottieAnimationView
+                android:id="@+id/lottieAnimationView"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_180sdp"
+                android:layout_marginTop="@dimen/_30sdp"
+                android:layout_marginStart="@dimen/_8sdp"
+                android:layout_marginEnd="@dimen/_8sdp"
+                app:lottie_autoPlay="true"
+                app:lottie_loop="true"
+                app:lottie_rawRes="@raw/lf30_editor_iylcnndr"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/txt_question"
@@ -27,16 +42,16 @@
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.051" />
+                app:layout_constraintTop_toBottomOf="@+id/lottieAnimationView"
+                app:layout_constraintVertical_bias="0.0" />
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/message_label"
                 style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="32dp"
                 android:hint="Message"
                 app:endIconMode="clear_text"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -44,7 +59,7 @@
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/txt_question"
-                app:layout_constraintVertical_bias="0.016">
+                app:layout_constraintVertical_bias="0.0">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/question_message"
@@ -61,42 +76,44 @@
                 android:text="Send Message"
                 android:textSize="18sp"
                 android:textStyle="bold"
-                app:cornerRadius="30dp"
+                app:cornerRadius="@dimen/_30sdp"
                 app:icon="@drawable/ic_baseline_send_24"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/message_label"
-                app:layout_constraintVertical_bias="0.07"
+                app:layout_constraintVertical_bias="0.04000002"
                 tools:ignore="MissingConstraints" />
 
             <com.google.android.material.imageview.ShapeableImageView
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:layout_marginTop="30dp"
+                android:layout_width="@dimen/_40sdp"
+                android:layout_height="@dimen/_40sdp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="32dp"
+                android:layout_marginEnd="8dp"
                 android:src="@drawable/ic_baseline_call_24"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/txt_mail_us"
-                app:layout_constraintHorizontal_bias="0.588"
+                app:layout_constraintHorizontal_bias="1.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/send_message"
-                app:layout_constraintVertical_bias="0.09"
+                app:layout_constraintVertical_bias="0.004"
                 tools:ignore="MissingConstraints" />
 
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/txt_mail_us"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="30dp"
+                android:layout_marginTop="@dimen/_30sdp"
                 android:text="Call Us"
                 android:textSize="30sp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.18"
+                app:layout_constraintHorizontal_bias="0.215"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/send_message"
-                app:layout_constraintVertical_bias="0.09"
+                app:layout_constraintVertical_bias="0.0"
                 tools:ignore="MissingConstraints" />
 
             <com.google.android.material.textview.MaterialTextView
@@ -130,34 +147,34 @@
             <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
                 android:id="@+id/btn_call"
                 android:layout_width="wrap_content"
-                app:icon="@drawable/ic_baseline_call_24"
-                android:textSize="18sp"
-                android:text="Call"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="59dp"
+                android:layout_marginTop="@dimen/_50sdp"
+                android:text="Call"
+                android:textSize="18sp"
+                app:icon="@drawable/ic_baseline_call_24"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.274"
+                app:layout_constraintHorizontal_bias="0.268"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/phone_number_2"
-                app:layout_constraintVertical_bias="0.123"
+                app:layout_constraintVertical_bias="0.0"
                 tools:ignore="MissingConstraints" />
 
             <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
                 android:id="@+id/btn_email"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="50dp"
-                android:layout_marginEnd="32dp"
+                android:layout_marginTop="@dimen/_50sdp"
+                android:layout_marginEnd="@dimen/_32sdp"
                 android:text="Email"
                 android:textSize="18sp"
                 app:icon="@drawable/ic_baseline_email_24"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.271"
+                app:layout_constraintHorizontal_bias="0.352"
                 app:layout_constraintStart_toEndOf="@+id/btn_call"
                 app:layout_constraintTop_toBottomOf="@+id/phone_number_2"
-                app:layout_constraintVertical_bias="0.165"
+                app:layout_constraintVertical_bias="0.0"
                 tools:ignore="MissingConstraints" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>

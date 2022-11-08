@@ -4,6 +4,8 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.Spinner;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -22,7 +24,7 @@ public class Addrequest extends AppCompatActivity {
     FirebaseAuth mAuth;
     TextInputEditText reg_title, reg_description, reg_features;
     TextInputLayout reg_title_label, reg_description_label, reg_features_label;
-    Spinner spn_category;
+    AutoCompleteTextView spn_category;
     Random rand = new Random();
     int req_count = rand.nextInt(100000);
 
@@ -36,13 +38,22 @@ public class Addrequest extends AppCompatActivity {
         reg_title = findViewById(R.id.reg_title);
         reg_description = findViewById(R.id.reg_description);
         reg_features = findViewById(R.id.reg_features);
-        spn_category = findViewById(R.id.category);
         reg_title_label = findViewById(R.id.pro_title);
         reg_description_label = findViewById(R.id.description);
         reg_features_label = findViewById(R.id.features);
 
         mAuth = FirebaseAuth.getInstance();
+
+
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
+                android.R.layout.simple_dropdown_item_1line, COUNTRIES);
+        AutoCompleteTextView textView = (AutoCompleteTextView)
+                findViewById(R.id.category);
+        textView.setAdapter(adapter);
     }
+    private static final String[] COUNTRIES = new String[] {
+        "Mobile Application Development", "Website Development", "System Design"
+    };
 
     public void AddItem(View view) {
         if (!validatetitle() | !validatedescription() | !validatefeatures()) {
@@ -51,7 +62,7 @@ public class Addrequest extends AppCompatActivity {
         String title = reg_title.getText().toString().trim();
         String description = reg_description.getText().toString().trim();
         String features = reg_features.getText().toString().trim();
-        String category = spn_category.getSelectedItem().toString().trim();
+        String category =spn_category.getText().toString().trim();
         String status = "Pending";
         String source="https://github.com/DharamBhojani";
 
