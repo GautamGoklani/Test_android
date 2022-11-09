@@ -28,12 +28,16 @@
         android:id="@+id/bottom_navigation"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:contextClickable="true"
+        app:itemIconTint="@color/blue"
+        app:itemTextColor="@color/black"
+        app:labelVisibilityMode="labeled"
         app:itemIconSize="@dimen/_25sdp"
-        app:itemIconTint="@color/iconpurple"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:menu="@menu/bottom_navigation_menu" />
+        app:menu="@menu/bottom_navigation_menu"
+        tools:ignore="UnusedAttribute" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/add_request"
