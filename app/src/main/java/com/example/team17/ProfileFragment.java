@@ -173,6 +173,9 @@ public class ProfileFragment extends Fragment {
 
 
     private void selectImage() {
+        if(method=="google"){
+            return;
+        }
         Intent intent = new Intent();
         intent.setType("image/*");
         intent.setAction(Intent.ACTION_GET_CONTENT);
