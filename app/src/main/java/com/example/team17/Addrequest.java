@@ -3,13 +3,12 @@ package com.example.team17;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
-import android.widget.Spinner;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.FirebaseAuth;
@@ -22,6 +21,7 @@ import java.util.Random;
 public class Addrequest extends AppCompatActivity {
 
     FirebaseAuth mAuth;
+    ExtendedFloatingActionButton add_request;
     TextInputEditText reg_title, reg_description, reg_features;
     TextInputLayout reg_title_label, reg_description_label, reg_features_label;
     AutoCompleteTextView spn_category;
@@ -41,36 +41,41 @@ public class Addrequest extends AppCompatActivity {
         reg_title_label = findViewById(R.id.pro_title);
         reg_description_label = findViewById(R.id.description);
         reg_features_label = findViewById(R.id.features);
+        add_request = findViewById(R.id.add);
+        spn_category = findViewById(R.id.category);
 
         mAuth = FirebaseAuth.getInstance();
 
-
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
-                android.R.layout.simple_dropdown_item_1line, COUNTRIES);
-        AutoCompleteTextView textView = (AutoCompleteTextView)
-                findViewById(R.id.category);
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_dropdown_item_1line, COUNTRIES);
+        AutoCompleteTextView textView = (AutoCompleteTextView) spn_category;
         textView.setAdapter(adapter);
+
+        add_request.setOnClickListener(view -> {
+            AddItem();
+        });
+
     }
-    private static final String[] COUNTRIES = new String[] {
-        "Mobile Application Development", "Website Development", "System Design"
+
+    private static final String[] COUNTRIES = new String[]{
+            "Mobile Application Development", "Website Development", "System Design"
     };
 
-    public void AddItem(View view) {
+    public void AddItem() {
         if (!validatetitle() | !validatedescription() | !validatefeatures()) {
             return;
         }
         String title = reg_title.getText().toString().trim();
         String description = reg_description.getText().toString().trim();
         String features = reg_features.getText().toString().trim();
-        String category =spn_category.getText().toString().trim();
+        String category = spn_category.getText().toString().trim();
         String status = "Pending";
-        String source="https://github.com/DharamBhojani";
 
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference reference = database.getReference("Requests");
-        AddRequestClass addRequestClass = new AddRequestClass(title, description, category, features, status, source);
-        String email=mAuth.getCurrentUser().getEmail();
-        String userid=email.replaceAll("@gmail.com"," ").replaceAll("@yahoo.com"," ");;
+        AddRequestClass addRequestClass = new AddRequestClass(title, description, category, features, status);
+        String email = mAuth.getCurrentUser().getEmail();
+        String userid = email.replaceAll("@gmail.com", " ").replaceAll("@yahoo.com", " ");
+        ;
 
         reference.child(userid).child(title + "" + req_count).setValue(addRequestClass);
         startActivity(new Intent(Addrequest.this, MainActivity.class));

@@ -22,9 +22,8 @@
                 android:id="@+id/cardView"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_160sdp"
-                android:layout_marginStart="@dimen/_8sdp"
-                android:layout_marginEnd="@dimen/_8sdp"
                 app:cardCornerRadius="@dimen/_20sdp"
+                app:cardPreventCornerOverlap="true"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
@@ -87,13 +86,16 @@
                 android:paddingBottom="15dp"
                 android:text="Edit Account"
                 android:textSize="20sp"
+                android:drawableEnd="@drawable/ic_baseline_arrow_forward_ios_24"
+                app:iconTint="@color/black"
+                app:iconSize="20dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/cardView"
                 app:layout_constraintVertical_bias="0.092"
-                tools:ignore="UsingOnClickInXml" />
+                tools:ignore="HardcodedText,UnusedAttribute,UsingOnClickInXml" />
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/contact_us"
@@ -104,12 +106,16 @@
                 android:paddingBottom="15dp"
                 android:text="Contact Us"
                 android:textSize="20sp"
+                android:drawableEnd="@drawable/ic_baseline_arrow_forward_ios_24"
+                app:iconTint="@color/black"
+                app:iconSize="20dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/edit_account"
-                app:layout_constraintVertical_bias="0.053" />
+                app:layout_constraintVertical_bias="0.0"
+                tools:ignore="HardcodedText" />
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/about_us"
@@ -120,12 +126,14 @@
                 android:paddingBottom="15dp"
                 android:text="About Us"
                 android:textSize="20sp"
+                android:drawableEnd="@drawable/ic_baseline_arrow_forward_ios_24"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/contact_us"
-                app:layout_constraintVertical_bias="0.088" />
+                app:layout_constraintVertical_bias="0.0"
+                tools:ignore="HardcodedText" />
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/logOut_btn"
@@ -145,7 +153,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/about_us"
                 app:layout_constraintVertical_bias="0.147"
-                tools:ignore="MissingConstraints,UsingOnClickInXml" />
+                tools:ignore="HardcodedText,MissingConstraints,UsingOnClickInXml" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>

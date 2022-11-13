@@ -1,19 +1,18 @@
 package com.example.team17;
 
-import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
 
 import java.util.Objects;
 
 public class GetstartedActivity extends AppCompatActivity {
 
 
-    Button btn_getstarted;
+    ExtendedFloatingActionButton btn_getstarted;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

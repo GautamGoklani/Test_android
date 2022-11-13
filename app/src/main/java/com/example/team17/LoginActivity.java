@@ -36,8 +36,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 public class LoginActivity extends AppCompatActivity {
-    ExtendedFloatingActionButton signIn_btn;
-    ExtendedFloatingActionButton google_signin;
+    ExtendedFloatingActionButton signIn_btn, google_signin;
     TextInputEditText temail, tpass;
     TextInputLayout em_label, pas_label;
     FirebaseAuth mAuth;
@@ -45,7 +44,6 @@ public class LoginActivity extends AppCompatActivity {
     DatabaseReference reference;
     GoogleSignInOptions gso;
     GoogleSignInClient gsc;
-    Uri imageUri;
 
     @SuppressLint("ResourceAsColor")
     @Override

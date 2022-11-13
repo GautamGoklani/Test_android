@@ -34,6 +34,8 @@ import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 import com.squareup.picasso.Picasso;
 
+import java.util.Objects;
+
 import de.hdodenhof.circleimageview.CircleImageView;
 
 public class ProfileFragment extends Fragment {
@@ -173,7 +175,7 @@ public class ProfileFragment extends Fragment {
 
 
     private void selectImage() {
-        if(method=="google"){
+        if(Objects.equals(method, "google")){
             return;
         }
         Intent intent = new Intent();

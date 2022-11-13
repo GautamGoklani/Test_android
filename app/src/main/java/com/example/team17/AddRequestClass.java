@@ -6,15 +6,13 @@ public class AddRequestClass {
     String category;
     String features;
     String status;
-    String source;
 
-    public AddRequestClass(String title, String description, String category, String features, String status, String source) {
+    public AddRequestClass(String title, String description, String category, String features, String status) {
         this.title = title;
         this.description = description;
         this.category = category;
         this.features = features;
         this.status = status;
-        this.source = source+"/"+title;
     }
 
     public String getTitle() {
@@ -55,13 +53,5 @@ public class AddRequestClass {
 
     public void setStatus(String status) {
         this.status = status;
-    }
-
-    public String getSource() {
-        return source;
-    }
-
-    public void setSource(String source) {
-        this.source = source+"/"+title;
     }
 }

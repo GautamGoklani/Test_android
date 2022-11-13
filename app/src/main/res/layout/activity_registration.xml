@@ -135,8 +135,8 @@
 
         <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
             android:id="@+id/reg_btn"
-            android:layout_width="@dimen/_120sdp"
-            android:layout_height="wrap_content"
+            android:layout_width="@dimen/_115sdp"
+            android:layout_height="@dimen/_35sdp"
             android:layout_alignEnd="@+id/reg_pass_label"
             android:backgroundTint="@color/purple_500"
             android:gravity="center"
