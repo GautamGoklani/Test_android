@@ -145,7 +145,7 @@ public class LoginActivity extends AppCompatActivity {
         database = FirebaseDatabase.getInstance();
         reference = database.getReference("Users");
         String email_userid = mAuth.getCurrentUser().getEmail();
-        String userid = email_userid.replaceAll("@gmail.com", " ").replaceAll("@yahoo.com", " ");
+        String userid = email_userid.replaceAll("@rku.ac.in", " ").replaceAll("@gmail.com", " ").replaceAll("@yahoo.com", " ");
         reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {

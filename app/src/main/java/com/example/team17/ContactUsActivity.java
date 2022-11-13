@@ -48,7 +48,7 @@ public class ContactUsActivity extends AppCompatActivity {
             database = FirebaseDatabase.getInstance();
             reference = database.getReference("Users");
             String email_userid = mAuth.getCurrentUser().getEmail();
-            String userid = email_userid.replaceAll("@gmail.com", " ").replaceAll("@yahoo.com", " ");
+            String userid = email_userid.replaceAll("@rku.ac.in"," ").replaceAll("@gmail.com", " ").replaceAll("@yahoo.com", " ");
             reference.child(userid).child("msg").setValue(msg);
 
             startActivity(new Intent(ContactUsActivity.this, MainActivity.class));

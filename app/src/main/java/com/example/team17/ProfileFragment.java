@@ -91,6 +91,7 @@ public class ProfileFragment extends Fragment {
 
         logOut_btn = view.findViewById(R.id.logOut_btn);
         edit_acc = view.findViewById(R.id.edit_account);
+        edit_acc.setVisibility(View.INVISIBLE);
         about_us = view.findViewById(R.id.about_us);
         contact_us = view.findViewById(R.id.contact_us);
         profile_name = view.findViewById(R.id.profile_name);
@@ -100,7 +101,6 @@ public class ProfileFragment extends Fragment {
         storage = FirebaseStorage.getInstance();
         storageReference = storage.getReference();
         retrieveData();
-
         image.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -161,6 +161,9 @@ public class ProfileFragment extends Fragment {
                 }
                 profile_name.setText(name1);
                 profile_email.setText(email1);
+                if(method.equals("registration")){
+                    edit_acc.setVisibility(View.VISIBLE);
+                }
                 if(url!=null) {
                     Picasso.get().load(url).into(image);
                 }

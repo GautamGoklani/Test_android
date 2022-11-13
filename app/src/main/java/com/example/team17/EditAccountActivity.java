@@ -60,7 +60,7 @@ public class EditAccountActivity extends AppCompatActivity {
         database = FirebaseDatabase.getInstance();
         reference = database.getReference("Users");
         String email_userid=mAuth.getCurrentUser().getEmail();
-        String userid = email_userid.replaceAll("@gmail.com", " ").replaceAll("@yahoo.com", " ");
+        String userid = email_userid.replaceAll("@gmail.com", " ").replaceAll("@yahoo.com", " ").replaceAll("@rku.ac.in"," ");
 
         if (!name.isEmpty()) {
             reference.child(userid).child("uname").setValue(name);

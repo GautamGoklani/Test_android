@@ -1,25 +1,17 @@
 package com.example.team17;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 import android.widget.Toast;
 
-import com.google.android.gms.auth.api.signin.GoogleSignIn;
-import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
-import com.google.android.gms.auth.api.signin.GoogleSignInClient;
-import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
-import com.google.android.gms.common.SignInButton;
-import com.google.android.gms.common.api.ApiException;
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
@@ -30,9 +22,6 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-
-import java.util.HashMap;
-import java.util.Map;
 
 public class RegistrationActivity extends AppCompatActivity {
 
@@ -109,7 +98,7 @@ public class RegistrationActivity extends AppCompatActivity {
                     String msg = "hi";
                     String method = "registration";
                     UserHelperClass userHelperClass = new UserHelperClass(uname, phone, em1, pass1, msg, method);
-                    String userid = em1.replaceAll("@gmail.com", " ").replaceAll("@yahoo.com", " ");
+                    String userid = em1.replaceAll("@rku.ac.in"," ").replaceAll("@gmail.com", " ").replaceAll("@yahoo.com", " ");
                     reference.child(userid).setValue(userHelperClass);
                     startActivity(new Intent(RegistrationActivity.this, LoginActivity.class));
                     finish();

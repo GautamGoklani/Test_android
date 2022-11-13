@@ -74,7 +74,7 @@ public class Addrequest extends AppCompatActivity {
         DatabaseReference reference = database.getReference("Requests");
         AddRequestClass addRequestClass = new AddRequestClass(title, description, category, features, status);
         String email = mAuth.getCurrentUser().getEmail();
-        String userid = email.replaceAll("@gmail.com", " ").replaceAll("@yahoo.com", " ");
+        String userid = email.replaceAll("@gmail.com", " ").replaceAll("@rku.ac.in"," ").replaceAll("@yahoo.com", " ");
         ;
 
         reference.child(userid).child(title + "" + req_count).setValue(addRequestClass);
